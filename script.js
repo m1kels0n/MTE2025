@@ -13,79 +13,82 @@ const areaContent = [
             { title: "AREA 1: VMGO",
                type: "folder",
                children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //     //  { title: "File", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
+
             {   title: "AREA 2: FACULTY",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
             {   title: "AREA 3: CURRICULUM & INSTRUCTION",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
+
             {   title: "AREA 4: Support to Students",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
+            
             {   title: "AREA 5: Research",
                 type: "folder",
                 children: [
@@ -109,96 +112,96 @@ const areaContent = [
             {   title: "AREA 6: Extension",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
             {   title: "AREA 7: Library",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
             {   title: "AREA 8: Physical Plant & Facilities",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Michael", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Michael", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
             {   title: "AREA 9: Laboratories",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
             {   title: "AREA 10: Administration",
                 type: "folder",
                 children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
+                    // {title: "Well Define Objectives",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                    //      { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                    //  ]
+                    // },    
+                    // {title: "Supporting Documents",
+                    //  type: "folder",
+                    //  children: [
+                    //      { title: "File1", type:"file", link:""},
+                    //      { title: "File2", type:"file", link:"#"}
+                    //  ]
+                    // },               
                 ]
             },
 
