@@ -10,8 +10,7 @@ const areaContent = [
         title: "COMPLIANCE REPORT",
         type: "folder",
         children: [
-            { title: "Compliance Report", type: "file", link:"#" },
-            { title: "AREA 1",
+            { title: "AREA 1: VMGO",
                type: "folder",
                children: [
                     {title: "Well Define Objectives",
@@ -30,7 +29,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 2",
+            {   title: "AREA 2: FACULTY",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -49,7 +48,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 3",
+            {   title: "AREA 3: CURRICULUM & INSTRUCTION",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -68,7 +67,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 4",
+            {   title: "AREA 4: Support to Students",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -87,7 +86,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 5",
+            {   title: "AREA 5: Research",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -106,7 +105,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 6",
+            {   title: "AREA 6: Extension",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -125,7 +124,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 7",
+            {   title: "AREA 7: Library",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -144,7 +143,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 8",
+            {   title: "AREA 8: Physical Plant & Facilities",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -163,7 +162,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 9",
+            {   title: "AREA 9: Laboratories",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -182,7 +181,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {   title: "AREA 10",
+            {   title: "AREA 10: Administration",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
