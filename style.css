@@ -9,11 +9,12 @@ body {
 /* LOGIN */
 #loginPage {
     height: 100vh;
-    background: #1f3b63;
+    background: linear-gradient(135deg, #7b1e3d, #1f3b63);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    
 }
 #loginBox {
     width: 320px;
@@ -42,7 +43,7 @@ body {
 /* SIDEBAR */
 #sidebar {
     width: 300px;
-    background: #2b4c7e;
+    background: linear-gradient(to bottom, #7b1e3d, #1f3b63);
     color: white;
     padding: 18px;
     overflow-y: auto;
