@@ -1,7 +1,7 @@
 /* LOGIN */
 const accounts = [
-    { username: "admin", password: "12345" },
-    { username: "user", password: "12345" }
+    { username: "aaccup", password: "tup123" },
+    { username: "mte", password: "123" }
 ];
 
 
@@ -462,5 +462,14 @@ document.getElementById("searchBox").addEventListener("input", function () {
     }
 });
 
+
+document.querySelectorAll("#loginBox input").forEach(input => {
+    input.addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            login();
+        }
+    });
+});
 
 window.onload = () => { buildMenu(); };
