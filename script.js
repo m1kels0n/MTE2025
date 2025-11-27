@@ -281,7 +281,10 @@ function buildMenuRecursive(items) {
                     data-title="${item.title.toLowerCase()}"
                     data-type="${isPDF ? "pdf" : "other"}"
                     onclick="highlightMenu(this)">
-                    <a onclick="loadPDF('${item.link}')">${item.title}</a>
+                    <a onclick="loadPDF('${item.link}')" data-original="${item.title}">
+                        ${item.title}
+                    </a>
+
                 </div>
             `;
         }
@@ -354,32 +357,55 @@ function login() {
     }
 }
 
+
 function searchPDF() {
     const query = document.getElementById("searchBox").value.toLowerCase();
-
     const files = document.querySelectorAll("#menuContainer .file");
 
-    if (!query) {
+    // If empty → full reset
+    if (!query.trim()) {
         restoreMenu();
         return;
     }
 
-    // Hide all files initially
-    files.forEach(f => (f.style.display = "none"));
+    // FIRST: Reset all files (hide them) + restore original text
+    files.forEach(file => {
+        file.style.display = "none";
+        const a = file.querySelector("a");
+        // Only reset innerHTML if data-original exists to prevent errors
+        if (a.hasAttribute("data-original")) {
+            a.innerHTML = a.getAttribute("data-original");
+        }
+    });
 
+    // SECOND: Loop through ALL files and show matches
     files.forEach(file => {
         const title = file.getAttribute("data-title");
-        const type = file.getAttribute("data-type");
+        const type = file.getAttribute("data-type"); // Note: your HTML sets this to "pdf" or "other"
 
-        if (type === "pdf" && title.includes(query)) {
+        // Check if title exists and matches query
+        if (title && title.includes(query)) {
+
+            // 1. Show the file
             file.style.display = "block";
+
+            // 2. Expand all parent folders (and rotate arrows via the updated function)
             expandParents(file);
 
-            // rotate arrow for opened sections
-            rotateParentArrows(file);
+            // 3. Highlight keyword
+            const a = file.querySelector("a");
+            const original = a.getAttribute("data-original");
+            
+            // Safe regex escape to prevent crashes on symbols like ( )
+            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); 
+            const regex = new RegExp("(" + safeQuery + ")", "gi");
+            
+            a.innerHTML = original.replace(regex, `<span class="highlight">$1</span>`);
         }
     });
 }
+
+
 
 
 
@@ -388,7 +414,18 @@ function expandParents(element) {
 
     while (parent && parent.id !== "menuContainer") {
         if (parent.tagName === "UL") {
+            // 1. Show the folder content
             parent.style.display = "block";
+
+            // 2. Rotate the arrow of this folder
+            // The folder title <div> is immediately before the <ul>
+            const folderTitle = parent.previousElementSibling; 
+            if (folderTitle) {
+                const arrow = folderTitle.querySelector(".arrow");
+                if (arrow) {
+                    arrow.classList.add("rotate");
+                }
+            }
         }
         parent = parent.parentElement;
     }
