@@ -324,7 +324,13 @@ function highlightMenu(el) {
 function loadPDF(url) {
     if (url !== "#")
         document.getElementById("pdfFrame").src = url;
+
+    // AUTO-HIDE SIDEBAR ON MOBILE WHEN FILE IS SELECTED
+    if (window.innerWidth < 768) {
+        document.getElementById("sidebar").classList.remove("active");
+    }
 }
+
 
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
