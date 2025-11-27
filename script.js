@@ -11,8 +11,26 @@ const areaContent = [
         type: "folder",
         children: [
             { title: "Compliance Report", type: "file", link:"#" },
-            {
-                title: "AREA 1",
+            { title: "AREA 1",
+               type: "folder",
+               children: [
+                    {title: "Well Define Objectives",
+                     type: "folder",
+                     children: [
+                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                     ]
+                    },    
+                    {title: "Supporting Documents",
+                     type: "folder",
+                     children: [
+                         { title: "File1", type:"file", link:""},
+                         { title: "File2", type:"file", link:"#"}
+                     ]
+                    },               
+                ]
+            },
+            {   title: "AREA 2",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -31,8 +49,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 2",
+            {   title: "AREA 3",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -51,8 +68,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 3",
+            {   title: "AREA 4",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -71,8 +87,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 4",
+            {   title: "AREA 5",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -91,8 +106,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 5",
+            {   title: "AREA 6",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -111,8 +125,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 6",
+            {   title: "AREA 7",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -131,8 +144,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 7",
+            {   title: "AREA 8",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -151,8 +163,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 8",
+            {   title: "AREA 9",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -171,28 +182,7 @@ const areaContent = [
                     },               
                 ]
             },
-            {
-                title: "AREA 9",
-                type: "folder",
-                children: [
-                    {title: "Well Define Objectives",
-                     type: "folder",
-                     children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
-                     ]
-                    },    
-                    {title: "Supporting Documents",
-                     type: "folder",
-                     children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
-                    },               
-                ]
-            },
-            {
-                title: "AREA 10",
+            {   title: "AREA 10",
                 type: "folder",
                 children: [
                     {title: "Well Define Objectives",
@@ -218,7 +208,6 @@ const areaContent = [
         title: "NARRATIVE REPORT",
         type: "folder",
         children: [
-            { title: "Compliance Report", type: "file", link:"#" },
             {
                 title: "AREA 3 - Instruction",
                 type: "folder",
@@ -256,12 +245,10 @@ const areaContent = [
             }
         ]
     },
-    /* COPY THIS FORMAT FOR AREAS 2-10 */
+
 ];
 
-/* ---------------------------
-   MENU BUILDER (FIXED)
-----------------------------*/
+
 function buildMenuRecursive(items) {
     let html = "<ul>";
 
@@ -273,10 +260,11 @@ function buildMenuRecursive(items) {
         if (item.type === "folder") {
             // folder/area label
             html += `
-                <div class="${item.title.startsWith("Area") ? "area-title" : "folder"}"
-                     onclick="toggleMenu('${id}')">
-                    ▶ ${item.title}
+                <div class="${item.title.startsWith('Area') ? 'area-title' : 'folder'}"
+                    onclick="toggleMenu('${id}', this)">
+                    <span class="arrow">▶</span> ${item.title}
                 </div>
+
             `;
 
             // IMPORTANT: nested UL INSIDE SAME <li>
@@ -311,10 +299,21 @@ function buildMenu() {
 /* ---------------------------
    ACTIONS
 ----------------------------*/
-function toggleMenu(id) {
-    const el = document.getElementById(id);
-    el.style.display = (el.style.display === "none") ? "block" : "none";
+function toggleMenu(id, element) {
+    const list = document.getElementById(id);
+
+    const isHidden = list.style.display === "none" || list.style.display === "";
+
+    // Toggle visibility
+    list.style.display = isHidden ? "block" : "none";
+
+    // Arrow rotation
+    const arrow = element.querySelector(".arrow");
+    if (arrow) {
+        arrow.classList.toggle("rotate", isHidden);
+    }
 }
+
 
 function highlightMenu(el) {
     document.querySelectorAll(".file").forEach(x=>x.classList.remove("active-menu"));
