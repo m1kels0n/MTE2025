@@ -141,3 +141,17 @@ iframe { width: 100%; height: 100%; border: none; }
 .arrow.rotate {
     transform: rotate(90deg);
 }
+#searchBox {
+    width: 90%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.highlight {
+    color: maroon !important;
+    font-weight: bold;
+}
+

@@ -93,7 +93,8 @@ const areaContent = [
                      type: "folder",
                      children: [
                          { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
+                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"},
+                         { title: "Timeline of revision for the university research and development and university extension manual of operations and agenda 3.19.2025", type:"file", link:"https://drive.google.com/file/d/1kQQoKReEoyD9cEH7BjZyAb1Wjw3LP2L_/preview"}
                      ]
                     },    
                     {title: "Supporting Documents",
@@ -149,7 +150,7 @@ const areaContent = [
                     {title: "Well Define Objectives",
                      type: "folder",
                      children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                         { title: "Michael", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
                          { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"}
                      ]
                     },    
@@ -274,12 +275,17 @@ function buildMenuRecursive(items) {
             `;
         }
         else if (item.type === "file") {
+            const isPDF = item.link.includes("/preview"); // Drive preview → PDF
             html += `
-                <div class="file" onclick="highlightMenu(this)">
+                <div class="file"
+                    data-title="${item.title.toLowerCase()}"
+                    data-type="${isPDF ? "pdf" : "other"}"
+                    onclick="highlightMenu(this)">
                     <a onclick="loadPDF('${item.link}')">${item.title}</a>
                 </div>
             `;
         }
+
 
         html += `</li>`;
     });
@@ -347,5 +353,77 @@ function login() {
         loginError.textContent = "Invalid username or password";
     }
 }
+
+function searchPDF() {
+    const query = document.getElementById("searchBox").value.toLowerCase();
+
+    const files = document.querySelectorAll("#menuContainer .file");
+
+    if (!query) {
+        restoreMenu();
+        return;
+    }
+
+    // Hide all files initially
+    files.forEach(f => (f.style.display = "none"));
+
+    files.forEach(file => {
+        const title = file.getAttribute("data-title");
+        const type = file.getAttribute("data-type");
+
+        if (type === "pdf" && title.includes(query)) {
+            file.style.display = "block";
+            expandParents(file);
+
+            // rotate arrow for opened sections
+            rotateParentArrows(file);
+        }
+    });
+}
+
+
+
+function expandParents(element) {
+    let parent = element.parentElement;
+
+    while (parent && parent.id !== "menuContainer") {
+        if (parent.tagName === "UL") {
+            parent.style.display = "block";
+        }
+        parent = parent.parentElement;
+    }
+}
+
+function restoreMenu() {
+    // Rebuild menu completely to reset all structure
+    buildMenu();
+
+    // Clear arrow rotations
+    document.querySelectorAll(".arrow").forEach(a => {
+        a.classList.remove("rotate");
+        a.classList.remove("open");
+    });
+}
+
+document.getElementById("searchBox").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        if (this.value.trim() === "") {
+            restoreMenu();   // Reset menu when search bar is empty
+        } else {
+            searchPDF();     // Search normally
+        }
+    }
+    else if (e.key === "Escape") {
+        this.value = "";
+        restoreMenu();
+    }
+});
+
+document.getElementById("searchBox").addEventListener("input", function () {
+    if (this.value.trim() === "") {
+        restoreMenu();
+    }
+});
+
 
 window.onload = () => { buildMenu(); };
