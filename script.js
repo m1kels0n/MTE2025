@@ -346,18 +346,37 @@ function toggleSidebar() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // SECURITY: Redirect logic
     const isSystemPage = document.getElementById("systemPage");
     const isLoginPage = document.getElementById("loginPage");
 
-    // If we are on the Main System Page but NOT logged in -> Go to Login
-    if (isSystemPage && !localStorage.getItem("isLoggedIn")) {
-        window.location.href = "login.html";
+    // CHECK 1: If on System Page
+    if (isSystemPage) {
+        if (!localStorage.getItem("isLoggedIn")) {
+            // Not logged in? Go to login immediately (System page remains hidden)
+            window.location.href = "login.html";
+        } else {
+            // Logged in? SAFE TO SHOW THE PAGE
+            isSystemPage.style.display = "flex";
+        }
     }
 
-    // If we are on the Login Page but ARE logged in -> Go to System
-    if (isLoginPage && localStorage.getItem("isLoggedIn")) {
-        window.location.href = "index.html";
+    // CHECK 2: If on Login Page
+    if (isLoginPage) {
+        if (localStorage.getItem("isLoggedIn")) {
+            // Already logged in? Go to index immediately (Login page remains hidden)
+            window.location.href = "index.html";
+        } else {
+            // Not logged in? SAFE TO SHOW THE PAGE
+            isLoginPage.style.display = "flex";
+        }
     }
+
+    // ... Keep the rest of your setup code (Event Listeners) below ...
+    
+    // SETUP: Login "Enter" Key Trigger
+    const loginInputs = document.querySelectorAll("#loginBox input");
+    // (Rest of the code remains the same)
 });
 
 /* LOGIN */

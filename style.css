@@ -10,12 +10,13 @@ body {
 #loginPage {
     height: 100vh;
     background: linear-gradient(135deg, #7b1e3d, #1f3b63);
-    display: flex;
+    /* display: flex;  <-- DELETE or COMMENT THIS OUT */
+    display: none;    /* <-- ADD THIS: Hidden by default */
     justify-content: center;
     align-items: center;
     color: white;
-    
 }
+
 #loginBox {
     width: 320px;
     padding: 25px;
@@ -36,7 +37,8 @@ body {
 /* SYSTEM */
 #systemPage {
     height: 100vh;
-    display: flex;
+    /* display: flex;  <-- DELETE or COMMENT THIS OUT */
+    display: none;    /* <-- ADD THIS: Hidden by default */
     width: 100%;
 }
 
