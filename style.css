@@ -131,20 +131,23 @@ iframe { width: 100%; height: 100%; border: none; }
     }
 
     #sidebar {
-        position: absolute;
-        top: 0;             /* Anchors sidebar to top */
-        height: 100vh;      /* Forces sidebar to fit screen height */
+        position: fixed;       /* REQUIRED: detached from flex container */
+        top: 0;
+        left: 0;
+        bottom: 0;             /* REQUIRED: forces it to touch the bottom */
+        height: 100vh;         /* Full viewport height */
         width: 80%;
         transform: translateX(-100%);
         transition: 0.3s;
         z-index: 1000;
-        overflow-y: auto;   /* Ensures scrolling works inside the fixed height */
-        padding: -15px;
+        overflow-y: auto;      
+        padding: 15px;
+        box-sizing: border-box; /* PREVENTS layout breaking due to padding */
     }
 
     #sidebar.active {
         transform: translateX(0);
-        box-shadow: 5px 0 15px rgba(0,0,0,0.5); /* Optional: Adds shadow so it stands out */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
     }
 }
 
