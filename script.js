@@ -346,37 +346,67 @@ function toggleSidebar() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // SECURITY: Redirect logic
+    
+    // --- SECURITY CHECKS ---
     const isSystemPage = document.getElementById("systemPage");
     const isLoginPage = document.getElementById("loginPage");
 
-    // CHECK 1: If on System Page
+    // 1. If on System Page but NOT logged in -> Go to Login
     if (isSystemPage) {
         if (!localStorage.getItem("isLoggedIn")) {
-            // Not logged in? Go to login immediately (System page remains hidden)
             window.location.href = "login.html";
         } else {
-            // Logged in? SAFE TO SHOW THE PAGE
-            isSystemPage.style.display = "flex";
+            isSystemPage.style.display = "flex"; // Show page
+            
+            // --- NEW: AUTO-OPEN SIDEBAR ON MOBILE ---
+            // If screen is small (mobile), open sidebar by default
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById("sidebar");
+                if (sidebar) {
+                    sidebar.classList.add("active");
+                }
+            }
         }
     }
 
-    // CHECK 2: If on Login Page
+    // 2. If on Login Page but ARE logged in -> Go to System
     if (isLoginPage) {
         if (localStorage.getItem("isLoggedIn")) {
-            // Already logged in? Go to index immediately (Login page remains hidden)
             window.location.href = "index.html";
         } else {
-            // Not logged in? SAFE TO SHOW THE PAGE
-            isLoginPage.style.display = "flex";
+            isLoginPage.style.display = "flex"; // Show page
         }
     }
 
-    // ... Keep the rest of your setup code (Event Listeners) below ...
-    
-    // SETUP: Login "Enter" Key Trigger
+    // --- SETUP EVENT LISTENERS ---
+
+    // Login "Enter" Key
     const loginInputs = document.querySelectorAll("#loginBox input");
-    // (Rest of the code remains the same)
+    if (loginInputs.length > 0) {
+        loginInputs.forEach(input => {
+            input.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") login();
+            });
+        });
+    }
+
+    // Search Box "Enter" Key
+    const searchBox = document.getElementById("searchBox");
+    if (searchBox) {
+        searchBox.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                this.value.trim() === "" ? restoreMenu() : searchPDF();
+            } else if (e.key === "Escape") {
+                this.value = "";
+                restoreMenu();
+            }
+        });
+        
+        // Reset when clearing text manually
+        searchBox.addEventListener("input", function () {
+            if (this.value.trim() === "") restoreMenu();
+        });
+    }
 });
 
 /* LOGIN */
