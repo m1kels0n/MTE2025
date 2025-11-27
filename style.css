@@ -35,9 +35,9 @@ body {
 
 /* SYSTEM */
 #systemPage {
-    display: none;
     height: 100vh;
     display: flex;
+    width: 100%;
 }
 
 /* SIDEBAR */
@@ -69,10 +69,10 @@ body {
     cursor: pointer;
     font-weight: bold;
 }
-.folder { background: #16476A; }
+.folder { background: #34699A; }
 
 .file {
-    background: #5879b8;
+    background: #468A9A;
     padding: 8px;
     margin: 4px 0;
     border-radius: 5px;
@@ -86,7 +86,7 @@ body {
 
 /* HIGHLIGHT */
 .active-menu {
-    background: #6ea0ff !important;
+    background: #BF092F !important;
     color: black !important;
     border-left: 5px solid white;
 }
@@ -198,4 +198,68 @@ iframe { width: 100%; height: 100%; border: none; }
     height: 70px !important;
     margin: 0 !important; 
     object-fit: contain;
+}
+
+.sidebar-header {
+    display: flex;          /* Puts Logos and Text side-by-side */
+    align-items: center;    /* Aligns them vertically in the middle */
+    gap: 10px;              /* Space between logos and text */
+    margin-bottom: 20px;    /* Space below the whole header */
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2); /* Optional divider line */
+}
+
+/* LEFT: Logos Container */
+.header-logos {
+    display: flex;
+    flex-direction: column; /* Stacks logos top/bottom to save width? */
+    /* OR use 'row' if you want them side-by-side, but they must be very small */
+    flex-direction: row; 
+    gap: 5px;
+}
+
+/* Resize images to fit next to text */
+.header-logos img {
+    width: 35px !important;  /* Much smaller to fit */
+    height: 35px !important;
+    object-fit: contain;
+    display: block;
+}
+
+/* RIGHT: Text Container */
+.header-text {
+    display: flex;
+    flex-direction: column; /* Title on top, Date on bottom */
+    justify-content: center;
+    text-align: left;       /* Aligns text to the left */
+}
+
+.app-title {
+    font-size: 13px;        /* Smaller font to fit */
+    font-weight: bold;
+    line-height: 1.2;
+    color: white;
+}
+
+.app-date {
+    font-size: 11px;
+    color: #cbd5e1;         /* Slightly lighter color for the date */
+    margin-top: 2px;
+}
+
+#menuContainer > ul > li > .folder,
+#menuContainer > ul > li > .area-title {
+    background: #F5AD18
+    ; /* Change this to your preferred color (e.g., #2c3e50) */
+    color: white;        /* Text color */
+}
+
+.area-title {
+    background: #154D71 !important; /* Example: SeaGreen. Change to your preferred color */
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
 }

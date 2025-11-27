@@ -4,50 +4,38 @@
     <meta charset="UTF-8">
     <title>TUP-CIE | MTE PORTAL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loginPage">
-    <div id="loginBox">
-        <div class="logo-row">
-            <img src="cielogo.png" alt="Second Logo">
-            <img src="https://mark-avila.github.io/tup-concept/assets/tup-logo.png" alt="TUP Logo">            
-        </div>
-        <div id="schoolName">Tehnological Unviersity of the Philippines</div>
-        <div id="schoolName">COLLEGE OF INDUSTRIAL EDUCATION</div>
-        <!--<div id="welcomeMsg">Welcome AACCUP Accreditors! Please log in.</div> -->
+    <div id="systemPage">
+        
+        <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰</button>
 
-        <input id="username" type="text" placeholder="Username">
-        <input id="password" type="password" placeholder="Password">
-        <button onclick="login()">LOGIN</button>
-        <div id="loginError"></div>
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <div class="header-logos">
+                    <img src="cielogo.png" alt="CIE">
+                    <img src="https://mark-avila.github.io/tup-concept/assets/tup-logo.png" alt="TUP">            
+                </div>
+                <div class="header-text">
+                    <div class="app-title">Master of Technology Education</div>
+                    <div class="app-date">December 3-5, 2025</div>
+                </div>
+            </div>
+
+            <input type="text" id="searchBox" placeholder="Search PDF...">
+            <div id="menuContainer"></div>
+            
+            <!--<button onclick="logout()" style="margin-top: 20px; width: 100%; background: #9daec5; border:none; padding: 10px; cursor: pointer;">Logout</button> -->
+        </aside>
+
+        <main id="content">
+            <div id="popoutBlocker"></div>
+            <iframe id="pdfFrame"></iframe>
+        </main>
     </div>
-</div>
 
-<div id="systemPage">
-
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰</button>
-
-    <aside id="sidebar">
-         <div class="logo-row">
-            <img src="cielogo.png" alt="CIE Logo">
-            <img src="https://mark-avila.github.io/tup-concept/assets/tup-logo.png" alt="TUP Logo">            
-        </div>   
-        <center><h4>Master of Technology Education</h4></center>
-        <input type="text" id="searchBox" placeholder="Search PDF...">
-
-        <div id="menuContainer"></div>
-    </aside>
-
-    <main id="content">
-        <div id="popoutBlocker"></div>
-        <iframe id="pdfFrame"></iframe>
-    </main>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

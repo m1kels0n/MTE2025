@@ -10,27 +10,28 @@ const areaContent = [
         title: "COMPLIANCE REPORT",
         type: "folder",
         children: [
-            { title: "AREA 1: VMGO",
+            { title: "AREA 1: Vision, Mission, Goals & Objectives",
                type: "folder",
                children: [
-                    // {title: "Well Define Objectives",
-                    //  type: "folder",
-                    //  children: [
-                    //     //  { title: "File", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-
-                    //  ]
-                    // },    
-                    // {title: "Supporting Documents",
-                    //  type: "folder",
-                    //  children: [
-                    //      { title: "File1", type:"file", link:""},
-                    //      { title: "File2", type:"file", link:"#"}
-                    //  ]
-                    // },               
+                    {title: "Well Define Objectives",
+                     type: "folder",
+                     children: [
+                        //  { title: "File", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
+                         { title: "Activity reports- TUP strategic plan 2024- 2028", type:"file", link:"https://drive.google.com/file/d/1pvPe4YA0jqrZpyi8Mbogy3XK6P72U3AJ/preview"},
+                         { title: "Compliance Report_MTE_Area I_VMGO with Cover page", type:"file", link:"https://drive.google.com/file/d/1c_SYiort0wgzqhK-Frz9Gu-voFe7C7w7/preview"}    
+                     ]
+                    },    
+                    {title: "Supporting Documents",
+                     type: "folder",
+                     children: [
+                         { title: "File1", type:"file", link:""},
+                         { title: "File2", type:"file", link:"#"}
+                     ]
+                    },               
                 ]
             },
 
-            {   title: "AREA 2: FACULTY",
+            {   title: "AREA 2: Faculty",
                 type: "folder",
                 children: [
                     // {title: "Well Define Objectives",
@@ -49,7 +50,7 @@ const areaContent = [
                     // },               
                 ]
             },
-            {   title: "AREA 3: CURRICULUM & INSTRUCTION",
+            {   title: "AREA 3: Curriculum & Instruction",
                 type: "folder",
                 children: [
                     // {title: "Well Define Objectives",
@@ -219,33 +220,31 @@ const areaContent = [
                     { title: "File2", type:"file", link:"#"}
                 ]
             },
+
             {
-                title: "Area 5 - Research",
+                title: "AREA 5 - Research",
                 type: "folder",
                 children: [
-                    { title: "SD File1", type:"file", link:"#"},
-                    { title: "SD File2", type:"file", link:"#"},
-                    { title: "Video", type:"file", link:"#"}
+                    { title: "File1", type:"file", link:"#"},
+                    { title: "File2", type:"file", link:"#"}
                 ]
             },
             {
-                title: "Area 6 - Extension",
+                title: "AREA 6 - Extension",
                 type: "folder",
                 children: [
-                    { title: "SD File1", type:"file", link:"#"},
-                    { title: "SD File2", type:"file", link:"#"},
-                    { title: "Video", type:"file", link:"#"}
+                    { title: "File1", type:"file", link:"#"},
+                    { title: "File2", type:"file", link:"#"}
                 ]
             },
             {
-                title: "Area 7 - Library",
+                title: "AREA 7 - Library",
                 type: "folder",
                 children: [
-                    { title: "SD File1", type:"file", link:"#"},
-                    { title: "SD File2", type:"file", link:"#"},
-                    { title: "Video", type:"file", link:"#"}
+                    { title: "File1", type:"file", link:"#"},
+                    { title: "File2", type:"file", link:"#"}
                 ]
-            }
+            },
         ]
     },
 
@@ -263,7 +262,7 @@ function buildMenuRecursive(items) {
         if (item.type === "folder") {
             // folder/area label
             html += `
-                <div class="${item.title.startsWith('Area') ? 'area-title' : 'folder'}"
+                    <div class="${item.title.toUpperCase().startsWith('AREA') ? 'area-title' : 'folder'}"
                     onclick="toggleMenu('${id}', this)">
                     <span class="arrow">▶</span> ${item.title}
                 </div>
@@ -346,20 +345,44 @@ function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const isSystemPage = document.getElementById("systemPage");
+    const isLoginPage = document.getElementById("loginPage");
+
+    // If we are on the Main System Page but NOT logged in -> Go to Login
+    if (isSystemPage && !localStorage.getItem("isLoggedIn")) {
+        window.location.href = "login.html";
+    }
+
+    // If we are on the Login Page but ARE logged in -> Go to System
+    if (isLoginPage && localStorage.getItem("isLoggedIn")) {
+        window.location.href = "index.html";
+    }
+});
+
 /* LOGIN */
 function login() {
-    const usr = username.value.trim();
-    const pwd = password.value.trim();
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const errorDiv = document.getElementById("loginError");
 
-    if (accounts.find(u=>u.username===usr && u.password===pwd)) {
-        loginPage.style.display = "none";
-        systemPage.style.display = "flex";
-        buildMenu();
+    const validUser = accounts.find(acc => acc.username === user && acc.password === pass);
+
+    if (validUser) {
+        // Save login state
+        localStorage.setItem("isLoggedIn", "true");
+        // Redirect to main page
+        window.location.href = "index.html";
     } else {
-        loginError.textContent = "Invalid username or password";
+        errorDiv.textContent = "Invalid Username or Password";
+        errorDiv.style.color = "yellow";
     }
 }
 
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
 
 function searchPDF() {
     const query = document.getElementById("searchBox").value.toLowerCase();
