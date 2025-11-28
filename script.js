@@ -19,15 +19,15 @@ const areaContent = [
                      children: [
                         //  { title: "File", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
                          { title: "Activity reports- TUP strategic plan 2024- 2028", type:"file", link:"https://drive.google.com/file/d/1pvPe4YA0jqrZpyi8Mbogy3XK6P72U3AJ/preview"},
-                         { title: "Compliance Report_MTE_Area I_VMGO with Cover page", type:"file", link:"https://drive.google.com/file/d/1c_SYiort0wgzqhK-Frz9Gu-voFe7C7w7/preview"}    
+                         { title: "Compliance Report_MTE_Area I_VMGO with Cover page", type:"file", link:"https://drive.google.com/file/d/1BGHlxju15X5RfaTq6R7WHoCoH64U3pmG/preview"}    
                      ]
                     },    
                     {title: "Supporting Documents",
                      type: "folder",
                      children: [
                          { title: "File1", type:"file", link:"https://docs.google.com/spreadsheets/d/1FW3BHantYQZuU-yqxlHtUPg5hdOItzoX/preview"},
-                         { title: "File2", type:"file", link:"https://docs.google.com/presentation/d/1XiJeDntvyxspH3eJI0bIXP94gvQI0JW6/preview"},
-                         { title: "File2", type:"file", link:"https://docs.google.com/document/d/1RY3LSz4wwU_CL1cS0P6NgKPOuW0HwcAO/preview"}
+                         { title: "File2", type:"file", link:"https://docs.google.com/document/d/1RY3LSz4wwU_CL1cS0P6NgKPOuW0HwcAO/preview"},
+                         { title: "photo", type:"file", link:"https://drive.google.com/file/d/1UIhpUmSQywugCoea2ELsd8MnSFbK3wMT/preview"}
                      ]  
                     },               
                 ]
