@@ -94,7 +94,32 @@ body {
 }
 
 /* MAIN CONTENT */
-#content { flex: 1; background: #f5f5f5; position: relative;}
+#content { 
+    flex: 1; 
+    background: #f5f5f5; 
+    display: flex;          /* Changed to Flex */
+    flex-direction: column; /* Stack items Top-to-Bottom */
+    height: 100vh;
+    overflow: hidden;
+}
+#fileTitleHeader {
+    background: white;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f3b63;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex-shrink: 0;        /* Prevents header from shrinking */
+    z-index: 10;
+}
+
+#iframeContainer {
+    flex: 1;               /* Takes all remaining height */
+    position: relative;    /* Blockers position themselves relative to THIS */
+    width: 100%;
+    overflow: hidden;
+}
 iframe { width: 100%; height: 100%; border: none; }
 
 /* MOBILE */
@@ -107,10 +132,9 @@ iframe { width: 100%; height: 100%; border: none; }
     position: absolute;
     top: 0;
     right: 0;
-    width: 60px;   /* Covers the width of the button */
-    height: 60px;  /* Covers the height of the toolbar */
-    z-index: 100;  /* Ensures it sits ON TOP of the iframe */
-    /* background: rgba(255, 0, 0, 0.3); */ /* Uncomment this line to see the red box for testing */
+    width: 60px;
+    height: 60px;
+    z-index: 100;
 }
 
 /* MOBILE */
@@ -265,3 +289,14 @@ iframe { width: 100%; height: 100%; border: none; }
     cursor: pointer;
     font-weight: bold;
 }
+
+/* BLOCKER FOR BOTTOM-RIGHT (Google Slides Button) */
+#bottomBlocker {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: 60px;
+    z-index: 100;
+}
+

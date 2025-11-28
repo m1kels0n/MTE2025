@@ -1,9 +1,10 @@
-/* LOGIN */
+/* ============================
+   1. DATA & CONFIG
+   ============================ */
 const accounts = [
     { username: "aaccup", password: "tup123" },
     { username: "mte", password: "123" }
 ];
-
 
 const areaContent = [
     {
@@ -24,9 +25,10 @@ const areaContent = [
                     {title: "Supporting Documents",
                      type: "folder",
                      children: [
-                         { title: "File1", type:"file", link:""},
-                         { title: "File2", type:"file", link:"#"}
-                     ]
+                         { title: "File1", type:"file", link:"https://docs.google.com/spreadsheets/d/1FW3BHantYQZuU-yqxlHtUPg5hdOItzoX/preview"},
+                         { title: "File2", type:"file", link:"https://docs.google.com/presentation/d/1XiJeDntvyxspH3eJI0bIXP94gvQI0JW6/preview"},
+                         { title: "File2", type:"file", link:"https://docs.google.com/document/d/1RY3LSz4wwU_CL1cS0P6NgKPOuW0HwcAO/preview"}
+                     ]  
                     },               
                 ]
             },
@@ -96,8 +98,7 @@ const areaContent = [
                     {title: "Well Define Objectives",
                      type: "folder",
                      children: [
-                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},
-                         { title: "Old University Research and Development Manual of Operations", type:"file", link:"https://drive.google.com/file/d/1QmzmDmxEdVmf0Qok2_dH5eJuKSgAirfk/preview"},
+                         { title: "Endorsement of Manual Operations and Agenda", type:"file", link:"https://drive.google.com/file/d/10bS1LMgWX0pUY-jwsv0SJ9fnCPE6idq9/preview"},                    
                          { title: "Timeline of revision for the university research and development and university extension manual of operations and agenda 3.19.2025", type:"file", link:"https://drive.google.com/file/d/1kQQoKReEoyD9cEH7BjZyAb1Wjw3LP2L_/preview"}
                      ]
                     },    
@@ -250,135 +251,43 @@ const areaContent = [
 
 ];
 
-
-function buildMenuRecursive(items) {
-    let html = "<ul>";
-
-    items.forEach(item => {
-        const id = "id_" + Math.random().toString(36).slice(2);
-
-        html += `<li>`;
-
-        if (item.type === "folder") {
-            // folder/area label
-            html += `
-                    <div class="${item.title.toUpperCase().startsWith('AREA') ? 'area-title' : 'folder'}"
-                    onclick="toggleMenu('${id}', this)">
-                    <span class="arrow">▶</span> ${item.title}
-                </div>
-
-            `;
-
-            // IMPORTANT: nested UL INSIDE SAME <li>
-            html += `
-                <ul id="${id}" style="display:none;">
-                    ${buildMenuRecursive(item.children)}
-                </ul>
-            `;
-        }
-        else if (item.type === "file") {
-            const isPDF = item.link.includes("/preview"); // Drive preview → PDF
-            html += `
-                <div class="file"
-                    data-title="${item.title.toLowerCase()}"
-                    data-type="${isPDF ? "pdf" : "other"}"
-                    onclick="highlightMenu(this)">
-                    <a onclick="loadPDF('${item.link}')" data-original="${item.title}">
-                        ${item.title}
-                    </a>
-
-                </div>
-            `;
-        }
-
-
-        html += `</li>`;
-    });
-
-    html += "</ul>";
-    return html;
-}
-
-/* ---------------------------
-   BUILD MENU
-----------------------------*/
-function buildMenu() {
-    document.getElementById("menuContainer").innerHTML = buildMenuRecursive(areaContent);
-}
-
-/* ---------------------------
-   ACTIONS
-----------------------------*/
-function toggleMenu(id, element) {
-    const list = document.getElementById(id);
-
-    const isHidden = list.style.display === "none" || list.style.display === "";
-
-    // Toggle visibility
-    list.style.display = isHidden ? "block" : "none";
-
-    // Arrow rotation
-    const arrow = element.querySelector(".arrow");
-    if (arrow) {
-        arrow.classList.toggle("rotate", isHidden);
-    }
-}
-
-
-function highlightMenu(el) {
-    document.querySelectorAll(".file").forEach(x=>x.classList.remove("active-menu"));
-    el.classList.add("active-menu");
-}
-
-function loadPDF(url) {
-    if (url !== "#")
-        document.getElementById("pdfFrame").src = url;
-
-    // AUTO-HIDE SIDEBAR ON MOBILE WHEN FILE IS SELECTED
-    if (window.innerWidth < 768) {
-        document.getElementById("sidebar").classList.remove("active");
-    }
-}
-
-
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("active");
-}
-
+/* ============================
+   2. INITIALIZATION (Runs when page loads)
+   ============================ */
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- SECURITY CHECKS ---
     const isSystemPage = document.getElementById("systemPage");
     const isLoginPage = document.getElementById("loginPage");
 
-    // 1. If on System Page but NOT logged in -> Go to Login
+    // 1. If on System Page
     if (isSystemPage) {
         if (!localStorage.getItem("isLoggedIn")) {
-            window.location.href = "login.html";
+            window.location.href = "login.html"; // Redirect to login
         } else {
             isSystemPage.style.display = "flex"; // Show page
             
-            // --- NEW: AUTO-OPEN SIDEBAR ON MOBILE ---
-            // If screen is small (mobile), open sidebar by default
+            // *** CRITICAL FIX: BUILD THE MENU HERE ***
+            buildMenu(); 
+
+            // Auto-open sidebar on mobile
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById("sidebar");
-                if (sidebar) {
-                    sidebar.classList.add("active");
-                }
+                if (sidebar) sidebar.classList.add("active");
             }
         }
     }
 
-    // 2. If on Login Page but ARE logged in -> Go to System
+    // 2. If on Login Page
     if (isLoginPage) {
         if (localStorage.getItem("isLoggedIn")) {
-            window.location.href = "index.html";
+            window.location.href = "index.html"; // Redirect to system
         } else {
             isLoginPage.style.display = "flex"; // Show page
         }
     }
 
-    // --- SETUP EVENT LISTENERS ---
+    // --- EVENT LISTENERS ---
 
     // Login "Enter" Key
     const loginInputs = document.querySelectorAll("#loginBox input");
@@ -402,14 +311,96 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        // Reset when clearing text manually
         searchBox.addEventListener("input", function () {
             if (this.value.trim() === "") restoreMenu();
         });
     }
 });
 
-/* LOGIN */
+/* ============================
+   3. FUNCTIONS
+   ============================ */
+
+/* --- MENU BUILDER (THE MISSING PART) --- */
+function buildMenu() {
+    const container = document.getElementById("menuContainer");
+    if (!container) return;
+    container.innerHTML = ""; // Clear existing
+    buildMenuRecursive(areaContent, container);
+}
+
+function buildMenuRecursive(items, container) {
+    if (!items || items.length === 0) return;
+
+    const ul = document.createElement("ul");
+    // Only hide sub-menus (inside folders), but keep the main list visible
+    if (container.id !== "menuContainer") {
+        ul.style.display = "none"; 
+    }
+
+    items.forEach(item => {
+        const li = document.createElement("li");
+
+        if (item.type === "folder") {
+            // Folder Logic
+            const isArea = item.title.toUpperCase().startsWith("AREA");
+            const className = isArea ? "area-title" : "folder";
+            
+            li.innerHTML = `
+                <div class="${className}" onclick="toggleFolder(this)">
+                    <span class="arrow">▶</span> ${item.title}
+                </div>
+            `;
+            if (item.children) {
+                buildMenuRecursive(item.children, li);
+            }
+
+        } else if (item.type === "file") {
+            // File Logic
+            li.innerHTML = `
+                <div class="file" data-title="${item.title}" data-type="${item.type}">
+                    <a href="#" onclick="openFile(this, '${item.link}'); return false;" data-original="${item.title}">
+                        ${item.title}
+                    </a>
+                </div>
+            `;
+        }
+        ul.appendChild(li);
+    });
+
+    container.appendChild(ul);
+}
+
+function toggleFolder(element) {
+    const nextUl = element.nextElementSibling; // The <ul> containing children
+    const arrow = element.querySelector(".arrow");
+    
+    if (nextUl && nextUl.tagName === "UL") {
+        if (nextUl.style.display === "block") {
+            nextUl.style.display = "none";
+            if (arrow) arrow.classList.remove("rotate");
+        } else {
+            nextUl.style.display = "block";
+            if (arrow) arrow.classList.add("rotate");
+        }
+    }
+}
+
+/* --- FILE PREVIEW --- */
+function openFile(element, link) {
+    const iframe = document.getElementById("pdfFrame");
+    if (iframe) iframe.src = link;
+
+    const header = document.getElementById("fileTitleHeader");
+    if (header) header.textContent = element.innerText;
+}
+
+/* --- SYSTEM UTILS --- */
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) sidebar.classList.toggle("active");
+}
+
 function login() {
     const user = document.getElementById("username").value;
     const pass = document.getElementById("password").value;
@@ -418,9 +409,7 @@ function login() {
     const validUser = accounts.find(acc => acc.username === user && acc.password === pass);
 
     if (validUser) {
-        // Save login state
         localStorage.setItem("isLoggedIn", "true");
-        // Redirect to main page
         window.location.href = "index.html";
     } else {
         errorDiv.textContent = "Invalid Username or Password";
@@ -433,73 +422,63 @@ function logout() {
     window.location.href = "login.html";
 }
 
+/* --- SEARCH --- */
+/* --- SEARCH --- */
 function searchPDF() {
     const query = document.getElementById("searchBox").value.toLowerCase();
     const files = document.querySelectorAll("#menuContainer .file");
 
-    // If empty → full reset
+    // If empty, reset the menu
     if (!query.trim()) {
         restoreMenu();
         return;
     }
 
-    // FIRST: Reset all files (hide them) + restore original text
+    // 1. Hide ALL files first (Reset visibility)
     files.forEach(file => {
         file.style.display = "none";
+        
+        // Restore original text (remove highlights) if it exists
         const a = file.querySelector("a");
-        // Only reset innerHTML if data-original exists to prevent errors
-        if (a.hasAttribute("data-original")) {
+        if (a && a.hasAttribute("data-original")) {
             a.innerHTML = a.getAttribute("data-original");
         }
     });
 
-    // SECOND: Loop through ALL files and show matches
+    // 2. Loop through and find matches
     files.forEach(file => {
         const title = file.getAttribute("data-title");
-        const type = file.getAttribute("data-type"); // Note: your HTML sets this to "pdf" or "other"
-
-        // Check if title exists and matches query
-        if (title && title.includes(query)) {
-
-            // 1. Show the file
+        
+        // FIX: Convert title to lowercase before checking!
+        if (title && title.toLowerCase().includes(query)) {
+            
+            // Show the matching file
             file.style.display = "block";
-
-            // 2. Expand all parent folders (and rotate arrows via the updated function)
+            
+            // Open the folders leading to this file
             expandParents(file);
 
-            // 3. Highlight keyword
+            // Highlight the keyword
             const a = file.querySelector("a");
             const original = a.getAttribute("data-original");
             
-            // Safe regex escape to prevent crashes on symbols like ( )
-            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); 
+            // Safe regex for highlighting
+            const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const regex = new RegExp("(" + safeQuery + ")", "gi");
-            
             a.innerHTML = original.replace(regex, `<span class="highlight">$1</span>`);
         }
     });
 }
 
-
-
-
-
 function expandParents(element) {
     let parent = element.parentElement;
-
     while (parent && parent.id !== "menuContainer") {
         if (parent.tagName === "UL") {
-            // 1. Show the folder content
             parent.style.display = "block";
-
-            // 2. Rotate the arrow of this folder
-            // The folder title <div> is immediately before the <ul>
             const folderTitle = parent.previousElementSibling; 
             if (folderTitle) {
                 const arrow = folderTitle.querySelector(".arrow");
-                if (arrow) {
-                    arrow.classList.add("rotate");
-                }
+                if (arrow) arrow.classList.add("rotate");
             }
         }
         parent = parent.parentElement;
@@ -507,44 +486,5 @@ function expandParents(element) {
 }
 
 function restoreMenu() {
-    // Rebuild menu completely to reset all structure
-    buildMenu();
-
-    // Clear arrow rotations
-    document.querySelectorAll(".arrow").forEach(a => {
-        a.classList.remove("rotate");
-        a.classList.remove("open");
-    });
+    buildMenu(); // Re-render the menu to clear search state
 }
-
-document.getElementById("searchBox").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        if (this.value.trim() === "") {
-            restoreMenu();   // Reset menu when search bar is empty
-        } else {
-            searchPDF();     // Search normally
-        }
-    }
-    else if (e.key === "Escape") {
-        this.value = "";
-        restoreMenu();
-    }
-});
-
-document.getElementById("searchBox").addEventListener("input", function () {
-    if (this.value.trim() === "") {
-        restoreMenu();
-    }
-});
-
-
-document.querySelectorAll("#loginBox input").forEach(input => {
-    input.addEventListener("keydown", function(event) {
-
-        if (event.key === "Enter") {
-            login();
-        }
-    });
-});
-
-window.onload = () => { buildMenu(); };
